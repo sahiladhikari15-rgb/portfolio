@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sahil Adhikari — GTM Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0c0c0e;
+  --bg2:#111114;
+  --bg3:#18181c;
+  --line:#ffffff0f;
+  --line2:#ffffff1a;
+  --txt:#e8e6e1;
+  --txt2:#9b9895;
+  --txt3:#5c5a57;
+  --accent:#4f7cff;
+  --accent2:#7c5fff;
+  --gold:#d4a84b;
+  --green:#2ecc71;
+  --font:'Inter',sans-serif;
+  --serif:'Fraunces',serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--font);font-size:14px;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;align-items:center;padding:0 2rem;border-bottom:1px solid var(--line);background:rgba(12,12,14,0.9);backdrop-filter:blur(16px)}
+.nav-brand{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt);text-decoration:none;margin-right:auto}
+.nav-links{display:flex;gap:0;list-style:none}
+.nav-links a{font-size:12px;font-weight:500;color:var(--txt3);text-decoration:none;padding:0 1rem;letter-spacing:.04em;transition:color .15s}
+.nav-links a:hover{color:var(--txt)}
+.nav-hire{font-size:12px;font-weight:600;background:var(--accent);color:#fff;padding:.35rem 1rem;border-radius:4px;text-decoration:none;letter-spacing:.03em;transition:opacity .15s;margin-left:1rem}
+.nav-hire:hover{opacity:.85}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding:0;border-bottom:1px solid var(--line);position:relative;overflow:hidden;padding-top:52px}
+
+/* SVG background graphic */
+.hero-graphic{position:absolute;right:0;top:52px;bottom:0;width:55%;pointer-events:none;overflow:hidden}
+.hero-graphic svg{width:100%;height:100%}
+
+.hero-content{padding:4rem 2rem 2rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;max-width:600px}
+.hero-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.25);color:#2ecc71;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:1.5rem;width:fit-content}
+.hero-dot{width:5px;height:5px;background:#2ecc71;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+
+.hero-name{font-size:clamp(2.8rem,6vw,5.5rem);font-weight:900;line-height:.95;letter-spacing:-.04em;color:#fff;margin-bottom:.5rem}
+.hero-name-em{font-family:var(--serif);font-style:italic;font-weight:700;background:linear-gradient(135deg,#4f7cff,#7c5fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-role{font-size:clamp(.95rem,1.6vw,1.15rem);font-weight:400;color:var(--txt2);margin-bottom:2rem;letter-spacing:-.01em}
+
+.hero-stats{display:flex;gap:2rem;margin-bottom:2.5rem}
+.hstat{border-left:2px solid var(--accent);padding-left:.75rem}
+.hstat-n{font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1}
+.hstat-l{font-size:11px;color:var(--txt3);margin-top:2px;letter-spacing:.04em;text-transform:uppercase}
+
+.hero-actions{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;font-family:var(--font);font-size:13px;font-weight:600;padding:.65rem 1.4rem;border-radius:4px;text-decoration:none;transition:opacity .15s}
+.btn-p:hover{opacity:.85}
+.btn-s{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line2);color:var(--txt2);font-family:var(--font);font-size:13px;font-weight:500;padding:.65rem 1.4rem;border-radius:4px;text-decoration:none;transition:border-color .15s,color .15s}
+.btn-s:hover{border-color:var(--txt3);color:var(--txt)}
+
+/* TICKER */
+.ticker{background:var(--bg3);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:.5rem 0;overflow:hidden;white-space:nowrap}
+.ticker-t{display:inline-flex;animation:tick 28s linear infinite}
+.ticker-t span{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);padding:0 1.5rem}
+.ticker-t span::after{content:'·';margin-left:1.5rem;color:var(--txt3)}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* LAYOUT WRAPPER */
+.page{display:grid;grid-template-columns:220px 1fr;border-bottom:1px solid var(--line)}
+
+/* SIDEBAR */
+.sidebar{border-right:1px solid var(--line);padding:2rem 1.5rem;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto;display:flex;flex-direction:column;gap:2rem}
+.sb-section-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:.75rem}
+.sb-skills{display:flex;flex-direction:column;gap:2px}
+.sb-skill{display:flex;align-items:center;justify-content:space-between;padding:.35rem 0;border-bottom:1px solid var(--line)}
+.sb-skill:last-child{border-bottom:none}
+.sb-skill-name{font-size:12px;color:var(--txt2);font-weight:400}
+.sb-skill-bar{width:64px;height:3px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.sb-skill-fill{height:100%;border-radius:2px;background:var(--accent)}
+
+.sb-certs{display:flex;flex-direction:column;gap:.4rem}
+.sb-cert{font-size:11px;color:var(--txt3);display:flex;align-items:flex-start;gap:5px;line-height:1.4}
+.sb-cert::before{content:'✓';color:var(--green);flex-shrink:0;font-size:10px;margin-top:1px}
+
+.sb-contact a{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--txt3);text-decoration:none;margin-bottom:.5rem;transition:color .15s}
+.sb-contact a:hover{color:var(--accent)}
+.sb-contact a svg{width:13px;height:13px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+
+.sb-edu{display:flex;flex-direction:column;gap:.75rem}
+.sb-edu-item{}
+.sb-edu-deg{font-size:12px;font-weight:600;color:var(--txt);line-height:1.3}
+.sb-edu-school{font-size:11px;color:var(--accent);margin-top:1px}
+.sb-edu-note{font-size:10px;color:var(--txt3);margin-top:1px}
+
+/* MAIN CONTENT */
+.main{padding:0}
+
+/* Section */
+.section{padding:2rem;border-bottom:1px solid var(--line)}
+.section:last-child{border-bottom:none}
+.sec-hd{display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem}
+.sec-n{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);width:20px}
+.sec-t{font-size:1rem;font-weight:700;color:var(--txt);letter-spacing:-.02em}
+
+/* About */
+.about-p{font-size:13.5px;line-height:1.75;color:var(--txt2);max-width:640px}
+.about-p strong{color:var(--txt);font-weight:600}
+
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:1.25rem}
+.metric{background:var(--bg2);padding:1rem;text-align:center;transition:background .15s}
+.metric:hover{background:var(--bg3)}
+.metric-n{font-size:1.75rem;font-weight:800;color:#fff;letter-spacing:-.04em;line-height:1}
+.metric-n sup{font-size:.8rem;color:var(--accent);vertical-align:super}
+.metric-l{font-size:10px;font-weight:500;color:var(--txt3);letter-spacing:.04em;margin-top:3px;text-transform:uppercase}
+
+/* Experience */
+.exp-item{padding:1.25rem 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:1rem}
+.exp-item:first-child{padding-top:0}
+.exp-item:last-child{border-bottom:none;padding-bottom:0}
+.exp-left{}
+.exp-role{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:1px;letter-spacing:-.01em}
+.exp-co{font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.02em;margin-bottom:.6rem}
+.exp-bullets{list-style:none}
+.exp-bullets li{font-size:12.5px;line-height:1.65;color:var(--txt2);padding-left:1rem;position:relative;margin-bottom:2px}
+.exp-bullets li::before{content:'→';position:absolute;left:0;color:var(--txt3);font-size:11px}
+.exp-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:.6rem}
+.etag{font-size:10px;font-weight:600;letter-spacing:.05em;padding:2px 7px;border-radius:3px;border:1px solid var(--line2);color:var(--txt3)}
+.etag.a{background:rgba(79,124,255,.12);border-color:rgba(79,124,255,.3);color:#7fa8ff}
+.exp-right{text-align:right;flex-shrink:0;padding-top:2px}
+.exp-period{font-size:11px;color:var(--txt3);font-weight:500;white-space:nowrap}
+.exp-loc{font-size:11px;color:var(--txt3);margin-top:2px}
+.exp-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-top:4px}
+.exp-badge.ft{background:rgba(46,204,113,.1);color:#2ecc71;border:1px solid rgba(46,204,113,.2)}
+.exp-badge.fo{background:rgba(212,168,75,.1);color:var(--gold);border:1px solid rgba(212,168,75,.2)}
+
+/* Tools grid */
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.tool-cell{background:var(--bg2);padding:.85rem 1rem;transition:background .15s}
+.tool-cell:hover{background:var(--bg3)}
+.tool-cat{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:.5rem}
+.tool-items{display:flex;flex-wrap:wrap;gap:4px}
+.tool-item{font-size:11px;font-weight:500;color:var(--txt2);background:var(--bg);border:1px solid var(--line);padding:2px 7px;border-radius:3px}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:800px){
+  .page{grid-template-columns:1fr}
+  .sidebar{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--line)}
+  .hero-graphic{width:100%;opacity:.3}
+  .hero-stats{gap:1rem}
+  nav .nav-links{display:none}
+  .metrics-row{grid-template-columns:repeat(2,1fr)}
+  .tools-grid{grid-template-columns:repeat(2,1fr)}
+  .exp-item{grid-template-columns:1fr}
+  .exp-right{text-align:left;display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-brand">Sahil Adhikari</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#tools">Tools</a></li>
+  </ul>
+  <a href="mailto:sahiladhikari1991@gmail.com" class="nav-hire">Hire Me →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-graphic">
+    <svg viewBox="0 0 600 700" preserveAspectRatio="xMaxYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grid lines -->
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff05" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="600" height="700" fill="url(#grid)"/>
+
+      <!-- Large circle outline -->
+      <circle cx="400" cy="320" r="280" fill="none" stroke="#4f7cff0a" stroke-width="1"/>
+      <circle cx="400" cy="320" r="200" fill="none" stroke="#4f7cff0d" stroke-width="1"/>
+      <circle cx="400" cy="320" r="120" fill="none" stroke="#7c5fff12" stroke-width="1"/>
+
+      <!-- Accent arcs -->
+      <path d="M 200 320 A 200 200 0 0 1 540 200" fill="none" stroke="#4f7cff" stroke-width="1.5" opacity=".25"/>
+      <path d="M 280 120 A 280 280 0 0 1 600 400" fill="none" stroke="#7c5fff" stroke-width="1" opacity=".2"/>
+
+      <!-- Geometric nodes -->
+      <circle cx="400" cy="320" r="4" fill="#4f7cff" opacity=".7"/>
+      <circle cx="540" cy="200" r="3" fill="#4f7cff" opacity=".5"/>
+      <circle cx="280" cy="120" r="3" fill="#7c5fff" opacity=".5"/>
+      <circle cx="520" cy="460" r="3" fill="#4f7cff" opacity=".4"/>
+      <circle cx="160" cy="420" r="2.5" fill="#7c5fff" opacity=".4"/>
+
+      <!-- Connector lines -->
+      <line x1="400" y1="320" x2="540" y2="200" stroke="#4f7cff" stroke-width=".75" opacity=".2"/>
+      <line x1="400" y1="320" x2="280" y2="120" stroke="#7c5fff" stroke-width=".75" opacity=".2"/>
+      <line x1="400" y1="320" x2="520" y2="460" stroke="#4f7cff" stroke-width=".75" opacity=".15"/>
+      <line x1="400" y1="320" x2="160" y2="420" stroke="#7c5fff" stroke-width=".75" opacity=".15"/>
+
+      <!-- Floating metric boxes -->
+      <g opacity=".7">
+        <rect x="460" y="140" width="110" height="48" rx="4" fill="#111114" stroke="#4f7cff22" stroke-width="1"/>
+        <text x="515" y="160" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#4f7cff">12+ Years</text>
+        <text x="515" y="175" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#5c5a57">B2B Experience</text>
+      </g>
+      <g opacity=".65">
+        <rect x="100" y="350" width="110" height="48" rx="4" fill="#111114" stroke="#7c5fff22" stroke-width="1"/>
+        <text x="155" y="370" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#7c5fff">$2M Rev</text>
+        <text x="155" y="385" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#5c5a57">Fibrock Composites</text>
+      </g>
+      <g opacity=".6">
+        <rect x="460" y="430" width="110" height="48" rx="4" fill="#111114" stroke="#4f7cff22" stroke-width="1"/>
+        <text x="515" y="450" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#4f7cff">3 Continents</text>
+        <text x="515" y="465" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#5c5a57">US · EU · UAE</text>
+      </g>
+      <g opacity=".55">
+        <rect x="220" y="40" width="110" height="48" rx="4" fill="#111114" stroke="#7c5fff22" stroke-width="1"/>
+        <text x="275" y="60" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#7c5fff">40% QoQ</text>
+        <text x="275" y="75" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#5c5a57">Lead Growth</text>
+      </g>
+
+      <!-- Decorative small dots scattered -->
+      <circle cx="330" cy="220" r="1.5" fill="#ffffff10"/>
+      <circle cx="450" cy="380" r="1.5" fill="#ffffff10"/>
+      <circle cx="200" cy="180" r="1.5" fill="#ffffff08"/>
+      <circle cx="560" cy="310" r="1.5" fill="#ffffff08"/>
+      <circle cx="340" cy="500" r="1.5" fill="#ffffff06"/>
+
+      <!-- Diagonal accent line -->
+      <line x1="0" y1="700" x2="600" y2="0" stroke="#ffffff03" stroke-width="80"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-pill"><span class="hero-dot"></span> Open to opportunities · Mumbai</div>
+    <h1 class="hero-name">Sahil<br><span class="hero-name-em">Adhikari</span></h1>
+    <p class="hero-role">GTM Engineer · B2B Revenue Leader · AI-Native Sales Systems</p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">12+</div><div class="hstat-l">Years B2B</div></div>
+      <div class="hstat"><div class="hstat-n">$2M</div><div class="hstat-l">Revenue Built</div></div>
+      <div class="hstat"><div class="hstat-n">40%</div><div class="hstat-l">QoQ Growth</div></div>
+    </div>
+    <div class="hero-actions">
+      <a href="mailto:sahiladhikari1991@gmail.com" class="btn-p">Get in touch →</a>
+      <a href="https://linkedin.com/in/sahil-adhikari" target="_blank" class="btn-s">LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <!-- Ticker inside hero bottom -->
+  <div class="ticker">
+    <div class="ticker-t">
+      <span>GTM Strategy</span><span>Revenue Operations</span><span>MEDDPICC</span><span>Salesforce</span><span>HubSpot</span><span>Apollo.io</span><span>ABM</span><span>Agentic AI</span><span>AWS</span><span>Azure</span><span>ICP Definition</span><span>ARR Growth</span><span>Pipeline Automation</span><span>RevOps</span><span>SAP Ariba</span><span>PLG</span>
+      <span>GTM Strategy</span><span>Revenue Operations</span><span>MEDDPICC</span><span>Salesforce</span><span>HubSpot</span><span>Apollo.io</span><span>ABM</span><span>Agentic AI</span><span>AWS</span><span>Azure</span><span>ICP Definition</span><span>ARR Growth</span><span>Pipeline Automation</span><span>RevOps</span><span>SAP Ariba</span><span>PLG</span>
+    </div>
+  </div>
+</section>
+
+<!-- TWO-COLUMN LAYOUT -->
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div>
+      <div class="sb-section-label">Core Skills</div>
+      <div class="sb-skills">
+        <div class="sb-skill">
+          <span class="sb-skill-name">GTM Strategy</span>
+          <div class="sb-skill-bar"><div class="sb-skill-fill" style="width:95%"></div></div>
+        </div>
+        <div class="sb-skill">
+          <span class="sb-skill-name">Revenue Ops</span>
+          <div class="sb-skill-bar"><div class="sb-skill-fill" style="width:90%"></div></div>
+        </div>
+        <div class="sb-skill">
+          <span class="sb-skill-name">Salesforce</span>
+          <div class="sb-skill-bar"><div class="sb-skill-fill" style="width:88%"></div></div>
+        </div>
+        <div class="sb-skill">
+          <span class="sb-skill-name">MEDDPICC</span>
+          <div class="sb-skill-bar"><div class="sb-skill-fill" style="width:92%"></div></div>
+        </div>
+        <div class="sb-skill">
+          <span class="sb-skill-name">ABM</span>
+          <div class="sb-skill-bar"><div class="sb-skill-fill" style="width:87%"></div></div>
+        </div>
+        <div class="sb-skill">
+          <span class="sb-skill-name">Agentic AI</span>
+          <div class="sb-skill-bar"><div class="sb-skill-fill" style="width:80%"></div></div>
+        </div>
+        <div class="sb-skill">
+          <span class="sb-skill-name">AWS / Azure</span>
+          <div class="sb-skill-bar"><div class="sb-skill-fill" style="width:75%"></div></div>
+        </div>
+        <div class="sb-skill">
+          <span class="sb-skill-name">HubSpot</span>
+          <div class="sb-skill-bar"><div class="sb-skill-fill" style="width:85%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sb-section-label">Education</div>
+      <div class="sb-edu">
+        <div class="sb-edu-item">
+          <div class="sb-edu-deg">MBA</div>
+          <div class="sb-edu-school">Univ. of Western Australia</div>
+          <div class="sb-edu-note">In progress</div>
+        </div>
+        <div class="sb-edu-item">
+          <div class="sb-edu-deg">Advanced Business Mgmt</div>
+          <div class="sb-edu-school">IIM Kozhikode</div>
+          <div class="sb-edu-note">Executive Programme</div>
+        </div>
+        <div class="sb-edu-item">
+          <div class="sb-edu-deg">BCA</div>
+          <div class="sb-edu-school">NV Patel College</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sb-section-label">Certifications</div>
+      <div class="sb-certs">
+        <div class="sb-cert">Agentic AI Fundamentals</div>
+        <div class="sb-cert">Generative AI — Microsoft</div>
+        <div class="sb-cert">NIST AI RMF</div>
+        <div class="sb-cert">ServiceNow IT Leadership</div>
+        <div class="sb-cert">HubSpot Sales Software</div>
+        <div class="sb-cert">IIM Kozhikode — Adv. Business</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sb-section-label">Contact</div>
+      <div class="sb-contact">
+        <a href="mailto:sahiladhikari1991@gmail.com">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          sahiladhikari1991@gmail.com
+        </a>
+        <a href="tel:+917506176732">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 9.81 19.79 19.79 0 012.06 1.2 2 2 0 014.11 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14z"/></svg>
+          +91 75061 76732
+        </a>
+        <a href="https://linkedin.com/in/sahil-adhikari" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          linkedin.com/in/sahil-adhikari
+        </a>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- ABOUT -->
+    <div class="section reveal" id="about">
+      <div class="sec-hd">
+        <span class="sec-n">01</span>
+        <span class="sec-t">About</span>
+      </div>
+      <p class="about-p">
+        GTM Engineer and B2B Business Development leader with <strong>12+ years</strong> spanning SaaS, IT Services, and AI-native platforms.
+        I founded and scaled <strong>Fibrock Composites</strong> to $2M in revenue — owning the full go-to-market motion from day one —
+        then led enterprise pipeline generation across <strong>US, EU, and UAE</strong> markets at GyanMatrix and Systems Plus Solutions.
+        I combine deep methodology (MEDDPICC, ABM, SPIN) with modern AI tooling to build revenue engines that actually perform.
+        Currently completing an <strong>MBA at the University of Western Australia</strong>.
+      </p>
+      <div class="metrics-row">
+        <div class="metric">
+          <div class="metric-n">12<sup>+</sup></div>
+          <div class="metric-l">Yrs B2B</div>
+        </div>
+        <div class="metric">
+          <div class="metric-n">$2M</div>
+          <div class="metric-l">Revenue</div>
+        </div>
+        <div class="metric">
+          <div class="metric-n">40<sup>%</sup></div>
+          <div class="metric-l">QoQ Leads</div>
+        </div>
+        <div class="metric">
+          <div class="metric-n">35<sup>%</sup></div>
+          <div class="metric-l">Connect Rate</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section reveal" id="experience">
+      <div class="sec-hd">
+        <span class="sec-n">02</span>
+        <span class="sec-t">Experience</span>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-role">Business Development Manager</div>
+          <div class="exp-co">GyanMatrix</div>
+          <ul class="exp-bullets">
+            <li>Architected 6-month GTM strategy for the AI-augmented SDLC product (ARC framework); defined ICP, sales motion &amp; outbound sequencing for US enterprise segments.</li>
+            <li>Closed Salesforce consulting partnership — new revenue channel, expanded GTM partner network.</li>
+            <li>Reduced time-to-demo by 30% via cross-functional alignment across sales, product &amp; engineering.</li>
+            <li>Deployed Agentic AI to automate prospecting workflows, boosting outbound pipeline velocity.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="etag a">GTM Strategy</span>
+            <span class="etag a">Agentic AI</span>
+            <span class="etag">Salesforce</span>
+            <span class="etag">ICP</span>
+            <span class="etag">ARC Framework</span>
+          </div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-period">Jan 2026 – Apr 2026</div>
+          <div class="exp-loc">Mumbai, India</div>
+          <span class="exp-badge ft">Full-time</span>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-role">Sales Lead Generation Specialist</div>
+          <div class="exp-co">Systems Plus Solutions</div>
+          <ul class="exp-bullets">
+            <li>Drove enterprise adoption of Azure, AWS &amp; Salesforce across US, EU &amp; UAE using MEDDPICC and account-based sales.</li>
+            <li>Built &amp; led 4-person GTM team; improved connect rates 35% via AI-driven lead scoring through Apollo.io &amp; SAP Ariba.</li>
+            <li>Increased qualified lead volume 40% QoQ using AI-powered ICP segmentation models.</li>
+            <li>Designed multi-channel outbound sequences integrated with Salesforce &amp; HubSpot CRM workflows.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="etag a">MEDDPICC</span>
+            <span class="etag a">ABM</span>
+            <span class="etag">Apollo.io</span>
+            <span class="etag">SAP Ariba</span>
+            <span class="etag">RevOps</span>
+            <span class="etag">Team Lead</span>
+          </div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-period">Mar 2024 – Dec 2025</div>
+          <div class="exp-loc">Mumbai, India</div>
+          <span class="exp-badge ft">Full-time</span>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-role">Business Development Manager</div>
+          <div class="exp-co">Simple Logic IT</div>
+          <ul class="exp-bullets">
+            <li>Led GTM for IT Managed Services; improved lead-to-revenue conversion 25% via AI analytics &amp; persona-driven content.</li>
+            <li>Used GenAI to automate marketing workflows — lifted email engagement 10%, reduced CAC.</li>
+            <li>Built battlecards &amp; ROI calculators to accelerate enterprise deal velocity.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="etag a">Generative AI</span>
+            <span class="etag">IT Managed Services</span>
+            <span class="etag">Sales Enablement</span>
+          </div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-period">Jun 2023 – Feb 2024</div>
+          <div class="exp-loc">Mumbai, India</div>
+          <span class="exp-badge ft">Full-time</span>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-role">Business Development Manager</div>
+          <div class="exp-co">VLMS Global Consulting</div>
+          <ul class="exp-bullets">
+            <li>Executed B2B lead generation for global technology consulting across North America &amp; EMEA.</li>
+            <li>Built CRM pipeline tracking, improving forecast accuracy &amp; stakeholder reporting.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="etag">B2B Lead Gen</span>
+            <span class="etag">ICP Mapping</span>
+            <span class="etag">EMEA</span>
+            <span class="etag">North America</span>
+          </div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-period">Nov 2022 – May 2023</div>
+          <div class="exp-loc">Pune, India</div>
+          <span class="exp-badge ft">Full-time</span>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-role">Business Head — Founder &amp; CEO</div>
+          <div class="exp-co">Fibrock Composites</div>
+          <ul class="exp-bullets">
+            <li>Founded &amp; scaled bootstrapped B2B enterprise to $2M cumulative revenue — owned full GTM motion from zero.</li>
+            <li>Managed 12 international &amp; domestic enterprise accounts across complex RFP/RFQ cycles with C-suite stakeholders.</li>
+            <li>Designed go-to-market strategies for new verticals: market analysis, competitive positioning, pricing &amp; partnerships.</li>
+            <li>Built cross-functional team across sales, operations &amp; logistics; implemented OKRs &amp; revenue forecasting.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="etag a">Founder &amp; Exit</span>
+            <span class="etag a">$2M Revenue</span>
+            <span class="etag">Full GTM</span>
+            <span class="etag">Enterprise Sales</span>
+            <span class="etag">P&amp;L</span>
+          </div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-period">Jun 2014 – Oct 2022</div>
+          <div class="exp-loc">Mumbai, India</div>
+          <span class="exp-badge fo">Founder</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOOLS -->
+    <div class="section reveal" id="tools">
+      <div class="sec-hd">
+        <span class="sec-n">03</span>
+        <span class="sec-t">Tools &amp; Platforms</span>
+      </div>
+      <div class="tools-grid">
+        <div class="tool-cell">
+          <div class="tool-cat">CRM &amp; Sales</div>
+          <div class="tool-items">
+            <span class="tool-item">Salesforce</span>
+            <span class="tool-item">HubSpot</span>
+            <span class="tool-item">Apollo.io</span>
+            <span class="tool-item">SAP Ariba</span>
+            <span class="tool-item">LinkedIn Sales Nav</span>
+          </div>
+        </div>
+        <div class="tool-cell">
+          <div class="tool-cat">Cloud</div>
+          <div class="tool-items">
+            <span class="tool-item">AWS</span>
+            <span class="tool-item">Microsoft Azure</span>
+            <span class="tool-item">Salesforce Cloud</span>
+          </div>
+        </div>
+        <div class="tool-cell">
+          <div class="tool-cat">AI &amp; Automation</div>
+          <div class="tool-items">
+            <span class="tool-item">Agentic AI</span>
+            <span class="tool-item">Generative AI</span>
+            <span class="tool-item">LLM Workflows</span>
+            <span class="tool-item">AI-Augmented SDLC</span>
+          </div>
+        </div>
+        <div class="tool-cell">
+          <div class="tool-cat">GTM Methods</div>
+          <div class="tool-items">
+            <span class="tool-item">MEDDPICC</span>
+            <span class="tool-item">ABM</span>
+            <span class="tool-item">SPIN Selling</span>
+            <span class="tool-item">PLG</span>
+            <span class="tool-item">OKRs</span>
+          </div>
+        </div>
+        <div class="tool-cell">
+          <div class="tool-cat">Revenue Ops</div>
+          <div class="tool-items">
+            <span class="tool-item">Pipeline Mgmt</span>
+            <span class="tool-item">Lead Scoring</span>
+            <span class="tool-item">ARR / MRR</span>
+            <span class="tool-item">Forecasting</span>
+            <span class="tool-item">ICP Definition</span>
+          </div>
+        </div>
+        <div class="tool-cell">
+          <div class="tool-cat">Productivity</div>
+          <div class="tool-items">
+            <span class="tool-item">Microsoft 365</span>
+            <span class="tool-item">Google Workspace</span>
+            <span class="tool-item">Notion</span>
+            <span class="tool-item">Slack</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT FOOTER -->
+    <div class="section" style="background:var(--bg2);border-bottom:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+        <div>
+          <div style="font-size:1.4rem;font-weight:800;color:#fff;letter-spacing:-.03em;margin-bottom:.25rem">
+            Let's build revenue <span style="font-family:var(--serif);font-style:italic;color:var(--accent)">together.</span>
+          </div>
+          <div style="font-size:12px;color:var(--txt3)">sahiladhikari1991@gmail.com · +91 75061 76732 · Mumbai, India</div>
+        </div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <a href="mailto:sahiladhikari1991@gmail.com" class="btn-p">Email me →</a>
+          <a href="https://linkedin.com/in/sahil-adhikari" target="_blank" class="btn-s">LinkedIn ↗</a>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
+        <span style="font-size:11px;color:var(--txt3)">© 2026 Sahil Adhikari</span>
+        <span style="font-size:11px;display:flex;align-items:center;gap:5px;color:var(--txt3)">
+          <span style="width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block;animation:pulse 2s infinite"></span>
+          Open to full-time opportunities
+        </span>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+const els=document.querySelectorAll('.reveal');
+const ob=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');ob.unobserve(x.target)}})},{threshold:.06});
+els.forEach(e=>ob.observe(e));
+</script>
+</body>
+</html>
